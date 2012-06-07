@@ -5,6 +5,7 @@ import java.util.List;
 import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PermissionInfo;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -26,6 +27,11 @@ public class VirusScannerActivity extends Activity {
 
 		for (PackageInfo info : list) {
 			out.append( String.format("\n%s", info.packageName) );
+			PermissionInfo perms[] = info.permissions;
+			if(perms==null) continue;
+			for( PermissionInfo perm: perms)  {
+				out.append( String.format("\n   %s", perm.name) );
+			}
 		}
 	}
 }
